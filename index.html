@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For My Chulbuli 💖</title>
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        background: linear-gradient(135deg, #ffb6c1, #ffc0cb);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Poppins', sans-serif;
+        overflow: hidden;
+    }
+
+    .container {
+        text-align: center;
+        position: relative;
+    }
+
+    .box {
+        width: 180px;
+        height: 180px;
+        background: #ff69b4;
+        border-radius: 12px;
+        position: relative;
+        cursor: pointer;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+
+    .lid {
+        position: absolute;
+        width: 180px;
+        height: 50px;
+        background: #ff85c1;
+        top: -50px;
+        left: 0;
+        border-radius: 12px 12px 0 0;
+        transform-origin: bottom;
+        transition: transform 0.8s;
+    }
+
+    .opened .lid {
+        transform: rotateX(140deg);
+    }
+
+    .rose {
+        font-size: 70px;
+        position: absolute;
+        top: 60px;
+        left: 50%;
+        transform: translateX(-50%) scale(0);
+        transition: 1s ease;
+    }
+
+    .opened .rose {
+        transform: translateX(-50%) scale(1.2);
+    }
+
+    .note {
+        margin-top: 20px;
+        font-size: 22px;
+        color: #fff;
+        opacity: 0;
+        transition: 1s;
+    }
+
+    .opened + .note {
+        opacity: 1;
+    }
+
+    .heart {
+        position: absolute;
+        color: #ff1493;
+        font-size: 20px;
+        animation: float 4s linear infinite;
+    }
+
+    @keyframes float {
+        0% { transform: translateY(0) scale(1); opacity: 1; }
+        100% { transform: translateY(-300px) scale(1.5); opacity: 0; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="box" id="box">
+        <div class="lid"></div>
+        <div class="rose">🌹</div>
+    </div>
+    <div class="note">
+        For my chulbuli 💕<br>
+        You are my prettiest gift 🎁
+    </div>
+</div>
+
+<audio id="song" src="song.mp3"></audio>
+
+<script>
+const box = document.getElementById("box");
+const song = document.getElementById("song");
+
+box.addEventListener("click", () => {
+    box.classList.add("opened");
+    song.play();
+
+    for (let i = 0; i < 20; i++) {
+        let heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "💖";
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.bottom = "0px";
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 4000);
+    }
+});
+</script>
+
+</body>
+</html>
